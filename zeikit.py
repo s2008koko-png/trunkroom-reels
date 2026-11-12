@@ -58,6 +58,8 @@ def head(t, a, asize, b, bsize, tb=0.2):
     full-width chars * size must stay under ~900."""
     A = f'<rect x="70" y="170" width="940" height="110" rx="14" fill="{BLK}"/>' + txt(540, 225 + asize * 0.36, a, asize, YEL)
     B = f'<rect x="60" y="292" width="960" height="180" rx="14" fill="{WHT}" stroke="{BLK}" stroke-width="8"/>' + txt(540, 382 + bsize * 0.36, b, bsize, PNK)
+    if _COVER:  # scene 1: header is already on screen at frame 0, so the TikTok cover shows the hook
+        return A + B
     return grp(540, 225, pop(t, 0.0), A) + grp(540, 382, pop(t, tb), B)
 
 
@@ -196,10 +198,13 @@ def follow(t, t0):
 
 # ---------- frame / render ----------
 _SC, _DURS = [], []
+_COVER = False  # True while drawing scene 1 (header + caption shown from the very first frame)
 
 
 def frame(i, t):
+    global _COVER
     sc, T = _SC[i], _DURS[i]
+    _COVER = i == 0
     capbox = f'<rect x="70" y="1400" width="860" height="150" rx="14" fill="{BLK}"/>' + txt(500, 1498, sc["cap"], sc.get("csize", 62), WHT)
     notebox = ""
     if sc.get("note"):
@@ -207,7 +212,7 @@ def frame(i, t):
                    f'<text x="500" y="1603" text-anchor="middle" font-family="Noto Sans CJK JP" font-weight="700" font-size="30" fill="{WHT}">{sc["note"]}</text>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">'
             + bg(sum(_DURS[:i]) + t) + sc["draw"](t, T) + cat(t, 0.15 < t < T - 0.3)
-            + grp(500, 1475, pop(t, 0.1, 0.3), capbox) + grp(500, 1592, pop(t, 0.5, 0.3), notebox) + '</svg>')
+            + grp(500, 1475, 1 if i == 0 else pop(t, 0.1, 0.3), capbox) + grp(500, 1592, pop(t, 0.5, 0.3), notebox) + '</svg>')
 
 
 def _png(i, t):

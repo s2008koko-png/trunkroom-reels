@@ -21,6 +21,7 @@ python3 videos/vNNN_slug.py            # full build -> out/vNNN_slug.mp4 (about 
 
 ## Format rules (what makes a video belong to this channel)
 - 5–6 scenes, 28–35 seconds total. Scene 1 is the hook: a number or a loss the viewer feels in the first second.
+  In scene 1 the header and caption are on screen from frame 0 (no pop-in), so the TikTok cover shows the hook.
   Last scene: a one-line takeaway + `follow()` button. Second-to-last: the fair "other side" when the topic has one.
 - Every scene has something MOVING on the stage that shows the point (bars growing, coins leaving, a gauge shrinking,
   cards popping in). Never a scene with only text. Build new stage drawings from simple shapes when the kit has none.
