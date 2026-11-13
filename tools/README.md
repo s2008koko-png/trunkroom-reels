@@ -4,3 +4,4 @@
 - `bgm.py`: synthesizes an original background track to `bgm.wav` (edit `dur`, `bpm`, `chords`).
 - Join: `ffmpeg -f concat -i list.txt -c copy joined.mp4`, then `ffmpeg -i joined.mp4 -i bgm.wav -map 0:v -map 1:a -c:v copy -c:a aac -shortest -movflags +faststart out.mp4`.
 - Keep text between y=250 and y=1520 (Instagram UI covers top/bottom). Check a contact sheet for overflow before rendering.
+- `narration.py`: Japanese voice narration (pyopenjtalk). `build(lines=[(start, max_sec, text)], total, bgm="bgm.wav", out="audio.wav")` writes voice + quiet BGM; mux `audio.wav` instead of `bgm.wav`. Install with `pip install --break-system-packages pyopenjtalk`. Write numbers/Latin letters in kana (二千九百八十円, ディーエス, セコム, ウェブ).
