@@ -145,7 +145,7 @@ def s5(t):
     if p > 0:
         d.rounded_rectangle((90, 920, 990, 1500), radius=44, fill=NAVY)
     text(img, "まずは内覧から", 1030, 84, WHITE, t, 0.95)
-    pill(img, "WEB内覧予約 24時間受付", 1210, 62, ORANGE, WHITE, t, 1.15, padx=40)
+    pill(img, "24時間WEB内覧予約", 1210, 70, ORANGE, WHITE, t, 1.15, padx=40)
     text(img, "DSトランクルーム代沢", 1390, 78, WHITE, t, 1.4)
     return img
 
